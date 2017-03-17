@@ -44,7 +44,6 @@ match({ history, routes }, (error, redirectLocation, renderProps) => {
 $ npm install --save react-esc-storage
 ```
 
-
 ## Development
 
 If you'd like to contribute to this project, all you need to do is clone
@@ -54,7 +53,7 @@ this project and run:
 $ npm install
 ```
 
-## [License][https://github.com/tripss/react-esc-storage/blob/master/LICENSE]
+## [License](https://github.com/tripss/react-esc-storage/blob/master/LICENSE)
 
 > Internet Systems Consortium license
 > ===================================
@@ -83,4 +82,4 @@ $ npm install
 
 ## Collaboration
 
-If you have questions or issues, please [open an issue][issue]!
+If you have questions or issues, please [open an issue](https://github.com/TriPSs/react-esc-storage/issues)!
