@@ -1,0 +1,6 @@
+node_modules
+.idea
+CookieStorage.js
+index.js
+
+!src/*
