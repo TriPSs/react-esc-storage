@@ -1,4 +1,4 @@
-# React-ESC-Storage ![https://img.shields.io/npm/v/react-resolver.svg](https://img.shields.io/npm/v/react-esc-storage.svg?style=flat-square) [![](https://img.shields.io/github/issues-raw/tripss/react-esc-storage.svg?style=flat-square)](https://github.com/tripss/react-esc-storage/issues) [![](https://img.shields.io/david/tripss/react-esc-storage.svg?style=flat-square)](https://david-dm.org/tripss/react-esc-storage#info=dependencies)
+# React-ESC-Storage ![https://img.shields.io/npm/v/react-esc-storage.svg](https://img.shields.io/npm/v/react-esc-storage.svg?style=flat-square) [![](https://img.shields.io/github/issues-raw/tripss/react-esc-storage.svg?style=flat-square)](https://github.com/tripss/react-esc-storage/issues) [![](https://img.shields.io/david/tripss/react-esc-storage.svg?style=flat-square)](https://david-dm.org/tripss/react-esc-storage#info=dependencies)
 
 > Storage tool for React applications
 

@@ -2,24 +2,24 @@
   "name": "react-esc-storage",
   "version": "1.0.0",
   "description": "Easy to use Client and Server Storage",
-  "main": "./index.js",
-  "scripts": {
-    "build": "babel src -d ./",
-    "prepublish": "npm run build"
+  "homepage": "https://github.com/TriPSs/react-esc-storage",
+  "bugs": {
+    "url": "https://github.com/TriPss/react-esc-storage/issues"
   },
+  "license": "MIT",
   "author": {
     "name": "Tycho Bokdam",
     "email": "t.bokdam@seronaris.nl"
   },
-  "bugs": {
-    "url": "https://github.com/TriPss/react-esc-storage/issues"
-  },
+  "main": "./index.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/TriPSs/react-esc-storage.git"
   },
-  "homepage": "https://github.com/TriPSs/react-esc-storage",
-  "license": "MIT",
+  "scripts": {
+    "build": "babel src -d ./",
+    "prepublish": "npm run build"
+  },
   "devDependencies": {
     "babel": "5.8.34"
   }
