@@ -25,8 +25,13 @@ export class Storage {
     } else if (this.supportsStorage() && window.hasOwnProperty(`${storageType}Storage`))
       get = window[`${storageType}Storage`][name]
 
-    if (get)
-      return JSON.parse(get)
+    if (get) {
+      try {
+        return JSON.parse(get)
+      } catch (e) {
+        return get
+      }
+    }
 
     return get
   }
