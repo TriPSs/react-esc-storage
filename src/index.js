@@ -26,7 +26,13 @@ export class Storage {
       get = window[`${storageType}Storage`][name]
 
     if (get)
-      return JSON.parse(get)
+      return (
+        try {
+          JSON.parse(get)
+        } catch (e) {
+          return get
+        }
+      )
 
     return get
   }
