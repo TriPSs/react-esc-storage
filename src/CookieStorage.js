@@ -66,6 +66,15 @@ export class CookieStorage {
     this.cache[name] = value
   }
 
+  remove = (name, givenOptions = {}) => {
+    const options = { ...this.defaultOptions, ...givenOptions, ...{ expires: new Date(1970, 1, 1) } }
+
+    this.set(name, null, options)
+
+    if (this.cache.hasOwnProperty(name))
+      delete this.cache[name]
+  }
+
   has = (name, givenOptions = {}) => {
     return this.cache.hasOwnProperty(name) || typeof this.get(name, givenOptions) !== 'undefined'
   }
