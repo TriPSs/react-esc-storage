@@ -8,9 +8,26 @@ For example, setting a cookie, session or local storage.
 ```js
 import Storage from 'react-esc-storage'
 
+// Setting
 Storage.set(Storage.COOKIE, 'token', { cookie: 'cookie content' })
 Storage.set(Storage.SESSION, 'token', 'SESSION')
 Storage.set(Storage.LOCAL, 'token', { local: true })
+
+// Getting
+Storage.get(Storage.COOKIE, 'token')
+Storage.get(Storage.LOCAL, 'token')
+Storage.get(Storage.SESSION, 'token')
+
+// Check if exists
+Storage.has(Storage.COOKIE, 'token')
+Storage.has(Storage.LOCAL, 'token')
+Storage.has(Storage.SESSION, 'token')
+
+// Remove
+Storage.remove(Storage.COOKIE, 'token')
+Storage.remove(Storage.LOCAL, 'token')
+Storage.remove(Storage.SESSION, 'token')
+
 ```
 Objects will be automatically stringified when setting and parsed back when getting. 
 - - -
@@ -52,6 +69,11 @@ this project and run:
 ```shell
 $ npm install
 ```
+
+You can use `npm link` to use your development version in your own project:
+- Go to `react-esc-strorage` directory and execute command `npm link`
+- Go to your project directory and execute command `npm link react-esc-storage`
+
 
 ## [License](https://github.com/tripss/react-esc-storage/blob/master/LICENSE)
 

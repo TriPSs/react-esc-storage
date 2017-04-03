@@ -23,7 +23,7 @@ export class Storage {
         get = global.cookie.get(name, options)
 
     } else if (this.supportsStorage() && window.hasOwnProperty(`${storageType}Storage`))
-      get = window[`${storageType}Storage`][name]
+      get = window[`${storageType}Storage`].getItem(name)
 
     if (get) {
       try {
@@ -44,7 +44,16 @@ export class Storage {
         global.cookie.set(name, stringValue, options)
 
     } else if (this.supportsStorage() && global.hasOwnProperty(`${storageType}Storage`))
-      window[`${storageType}Storage`][name] = stringValue
+      window[`${storageType}Storage`].setItem(name, stringValue)
+  }
+
+  remove = (storageType, name, options = {}) => {
+    if (storageType === this.COOKIE) {
+      if (global.hasOwnProperty('cookie'))
+         global.cookie.remove(name, options)
+
+    } else if (this.supportsStorage() && global.hasOwnProperty(`${storageType}Storage`))
+      window[`${storageType}Storage`].removeItem(name)
   }
 
   has = (storageType, name, options = {}) => {
