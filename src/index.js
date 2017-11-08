@@ -1,12 +1,11 @@
-/**
- * Created by tycho on 14/02/2017.
- */
+// @flow
+
 import CookieStorage from './CookieStorage'
 
-export class Storage {
+export default new (class Storage {
 
-  COOKIE  = 'cookie'
-  LOCAL   = 'local'
+  COOKIE = 'cookie'
+  LOCAL = 'local'
   SESSION = 'session'
 
   check = () => {
@@ -40,35 +39,41 @@ export class Storage {
     let stringValue = JSON.stringify(value)
 
     if (storageType === this.COOKIE) {
-      if (global.hasOwnProperty('cookie'))
+      if (global.hasOwnProperty('cookie')) {
         global.cookie.set(name, stringValue, options)
+      }
 
-    } else if (this.supportsStorage() && global.hasOwnProperty(`${storageType}Storage`))
+    } else if (this.supportsStorage() && global.hasOwnProperty(`${storageType}Storage`)) {
       window[`${storageType}Storage`].setItem(name, stringValue)
+    }
   }
 
   remove = (storageType, name, options = {}) => {
     if (storageType === this.COOKIE) {
-      if (global.hasOwnProperty('cookie'))
-         global.cookie.remove(name, options)
+      if (global.hasOwnProperty('cookie')) {
+        return global.cookie.remove(name, options)
+      }
 
-    } else if (this.supportsStorage() && global.hasOwnProperty(`${storageType}Storage`))
+    } else if (this.supportsStorage() && global.hasOwnProperty(`${storageType}Storage`)) {
       window[`${storageType}Storage`].removeItem(name)
+    }
   }
 
   has = (storageType, name, options = {}) => {
     if (storageType === this.COOKIE) {
-      if (global.hasOwnProperty('cookie'))
+      if (global.hasOwnProperty('cookie')) {
         return global.cookie.has(name, options)
+      }
 
-    } else if (this.supportsStorage() && window.hasOwnProperty(`${storageType}Storage`))
+    } else if (this.supportsStorage() && window.hasOwnProperty(`${storageType}Storage`)) {
       return window[`${storageType}Storage`].hasOwnProperty(name)
+    }
+
+    return false
   }
 
   supportsStorage = () => {
-    return typeof localStorage  !== 'undefined' && typeof sessionStorage  !== 'undefined'
+    return typeof localStorage !== 'undefined' && typeof sessionStorage !== 'undefined'
   }
 
-}
-
-export default new Storage()
+})()

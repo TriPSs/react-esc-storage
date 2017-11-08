@@ -1,6 +1,8 @@
 node_modules
 .idea
 CookieStorage.js
+CookieStorage.js.flow
 index.js
+index.js.flow
 
 !src/*

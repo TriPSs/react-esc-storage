@@ -1,10 +1,8 @@
-/**
- * Created by tycho on 14/02/2017.
- */
-export class CookieStorage {
+// @flow
+export default class CookieStorage {
 
-  cache    = {}
-  cookies  = null
+  cache = {}
+  cookies = null
   isString = false
 
   defaultOptions = {
@@ -12,7 +10,7 @@ export class CookieStorage {
     secure  : false,
     httpOnly: false,
     domain  : null,
-    expires : null
+    expires : null,
   }
 
   constructor(cookies, isString = false) {
@@ -20,21 +18,23 @@ export class CookieStorage {
 
     if (!isString) {
       this.cookies = cookies
+
     } else {
       this.cookies = this.parseCookieString(cookies)
     }
   }
 
   get = (name, givenOptions = {}) => {
-    if (this.cache.hasOwnProperty(name))
+    if (this.cache.hasOwnProperty(name) && !!this.cache[name]) {
       return this.cache[name]
+    }
 
-    if (!this.isString)
+    if (!this.isString) {
       return this.cookies.get(name, givenOptions)
 
-    else
+    } else {
       return this.cookies[name]
-
+    }
   }
 
   set = (name, value, givenOptions = {}) => {
@@ -43,22 +43,27 @@ export class CookieStorage {
 
     } else if (typeof (document) !== 'undefined') {
       const options = { ...this.defaultOptions, ...givenOptions }
-      let cookie    = `${name}=${value}`
+      let cookie = `${name}=${value}`
 
-      if (options.path)
+      if (options.path) {
         cookie += '; path=' + options.path
+      }
 
-      if (options.expires)
+      if (options.expires) {
         cookie += '; expires=' + options.expires.toUTCString()
+      }
 
-      if (options.domain)
+      if (options.domain) {
         cookie += '; domain=' + options.domain
+      }
 
-      if (options.secure)
+      if (options.secure) {
         cookie += '; secure'
+      }
 
-      if (options.httpOnly)
+      if (options.httpOnly) {
         cookie += '; httponly'
+      }
 
       document.cookie = cookie
     }
@@ -71,13 +76,19 @@ export class CookieStorage {
 
     this.set(name, null, options)
 
-    if (this.cache.hasOwnProperty(name))
+    if (this.cache.hasOwnProperty(name)) {
       delete this.cache[name]
+    }
+
+    if (this.cookies[name]) {
+      delete this.cookies[name]
+    }
   }
 
-  has = (name, givenOptions = {}) => {
-    return this.cache.hasOwnProperty(name) || typeof this.get(name, givenOptions) !== 'undefined'
-  }
+  has = (name, givenOptions = {}) => (
+    (this.cache.hasOwnProperty(name) && !!this.cache[name])
+    || typeof this.get(name, givenOptions) !== 'undefined'
+  )
 
   parseCookieString = (cookieString) => {
     const cookies = cookieString.split(';')
@@ -88,7 +99,7 @@ export class CookieStorage {
       const getNameValue = cookie.split('=')
 
       if (getNameValue.length > 1) {
-        const name         = getNameValue[0].trim()
+        const name = getNameValue[0].trim()
         cookieObject[name] = getNameValue[1].trim()
       }
     })
@@ -96,5 +107,3 @@ export class CookieStorage {
     return cookieObject
   }
 }
-
-export default CookieStorage
